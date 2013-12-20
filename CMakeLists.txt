@@ -33,13 +33,13 @@ target_link_libraries(E_Sound LINK_PUBLIC EScript)
 
 # Dependency to Sound
 if(NOT TARGET Sound)
-	find_package(Sound 0.1.2 REQUIRED NO_MODULE)
+	find_package(Sound 0.2.0 REQUIRED NO_MODULE)
 endif()
 target_link_libraries(E_Sound LINK_PUBLIC Sound)
 
 # Dependency to Util
 if(NOT TARGET Util)
-	find_package(Util 0.1.2 REQUIRED NO_MODULE)
+	find_package(Util 0.2.0 REQUIRED NO_MODULE)
 endif()
 target_link_libraries(E_Sound LINK_PUBLIC Util)
 
