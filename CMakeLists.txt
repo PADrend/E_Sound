@@ -43,8 +43,8 @@ endif()
 target_link_libraries(E_Sound LINK_PUBLIC Util)
 
 # Set version of library
-set_target_properties(E_Sound PROPERTIES VERSION ${E_SOUND_VERSION}
-                                         SOVERSION ${E_SOUND_VERSION_MAJOR})
+set_target_properties(E_Sound PROPERTIES VERSION ${E_Sound_VERSION}
+                                         SOVERSION ${E_Sound_VERSION_MAJOR})
 
 # Install the header files
 file(GLOB E_SOUND_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
@@ -74,7 +74,7 @@ configure_package_config_file(E_SoundConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}
                               NO_SET_AND_CHECK_MACRO
                               NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/E_SoundConfigVersion.cmake
-                                 VERSION ${E_SOUND_VERSION}
+                                 VERSION ${E_Sound_VERSION}
                                  COMPATIBILITY SameMajorVersion)
 
 # Install the configuration files
@@ -84,13 +84,13 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/E_SoundConfig.cmake ${CMAKE_CURRENT_BI
 # Packaging
 include(InstallRequiredSystemLibraries)
 
-set(CPACK_PACKAGE_NAME "libsound${E_SOUND_VERSION_MAJOR}-escript")
+set(CPACK_PACKAGE_NAME "libsound${E_Sound_VERSION_MAJOR}-escript")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "E_Sound library")
 set(CPACK_PACKAGE_VENDOR "Benjamin Eikel; Claudius Jaehn; Ralf Petring")
 set(CPACK_PACKAGE_CONTACT "Benjamin Eikel <benjamin@eikel.org>")
-set(CPACK_PACKAGE_VERSION_MAJOR ${E_SOUND_VERSION_MAJOR})
-set(CPACK_PACKAGE_VERSION_MINOR ${E_SOUND_VERSION_MINOR})
-set(CPACK_PACKAGE_VERSION_PATCH ${E_SOUND_VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_MAJOR ${E_Sound_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${E_Sound_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${E_Sound_VERSION_PATCH})
 set(CPACK_PACKAGE_FILE_NAME "libE_Sound")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_STRIP_FILES ON)
