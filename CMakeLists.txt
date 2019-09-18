@@ -45,7 +45,9 @@ target_link_libraries(E_Sound LINK_PUBLIC Util)
 
 # Set version of library
 set_target_properties(E_Sound PROPERTIES VERSION ${E_Sound_VERSION}
-                                         SOVERSION ${E_Sound_VERSION_MAJOR})
+																				 SOVERSION ${E_Sound_VERSION_MAJOR}
+																				 POSITION_INDEPENDENT_CODE ON
+																				 LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 
 # Install the header files
 file(GLOB E_SOUND_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
@@ -60,9 +62,9 @@ install(TARGETS E_Sound EXPORT LibraryExport
 
 # Set include directories for users of this library
 target_include_directories(E_Sound
-                           INTERFACE
-                           "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>"
-                           "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>")
+													 INTERFACE
+													 "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>"
+													 "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>")
 
 # Library export
 install(EXPORT LibraryExport DESTINATION ${CMAKE_INSTALL_CMAKECONFIGDIR} FILE E_SoundTargets.cmake COMPONENT developmentlibraries)
@@ -70,17 +72,17 @@ install(EXPORT LibraryExport DESTINATION ${CMAKE_INSTALL_CMAKECONFIGDIR} FILE E_
 # Create the configuration files
 include(CMakePackageConfigHelpers)
 configure_package_config_file(E_SoundConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/E_SoundConfig.cmake
-                              INSTALL_DESTINATION ${CMAKE_INSTALL_CMAKECONFIGDIR}
-                              PATH_VARS CMAKE_INSTALL_CMAKECONFIGDIR
-                              NO_SET_AND_CHECK_MACRO
-                              NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+															INSTALL_DESTINATION ${CMAKE_INSTALL_CMAKECONFIGDIR}
+															PATH_VARS CMAKE_INSTALL_CMAKECONFIGDIR
+															NO_SET_AND_CHECK_MACRO
+															NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/E_SoundConfigVersion.cmake
-                                 VERSION ${E_Sound_VERSION}
-                                 COMPATIBILITY SameMajorVersion)
+																 VERSION ${E_Sound_VERSION}
+																 COMPATIBILITY SameMajorVersion)
 
 # Install the configuration files
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/E_SoundConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/E_SoundConfigVersion.cmake
-        DESTINATION ${CMAKE_INSTALL_CMAKECONFIGDIR} COMPONENT developmentlibraries)
+				DESTINATION ${CMAKE_INSTALL_CMAKECONFIGDIR} COMPONENT developmentlibraries)
 
 # Packaging
 include(InstallRequiredSystemLibraries)
