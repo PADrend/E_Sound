@@ -42,9 +42,8 @@ void E_Buffer::init(EScript::Namespace & lib) {
 }
 
 //---
-//! [static] factory
-E_Buffer * E_Buffer::create(Sound::Buffer * b){
-	return b == nullptr ? nullptr : new E_Buffer(b);
-}
 
+E_Buffer::E_Buffer(Util::Reference<Sound::Buffer> buffer, EScript::Type * type) : 
+	ReferenceObject_t(type ? type : getTypeObject(), buffer) { }
+	
 }

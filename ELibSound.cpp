@@ -13,6 +13,8 @@
 #include "E_Source.h"
 
 #include <Sound/Sound.h>
+#include <Sound/Serialization/Serialization.h>
+#include <Util/IO/FileName.h>
 
 using namespace EScript;
 
@@ -26,13 +28,13 @@ void init(EScript::Namespace * globals) {
 	ES_FUN(lib, "checkErrorStatus", 0, 1, Bool::create(Sound::checkErrorStatus(rt.getCurrentFile().c_str(), rt.getCurrentLine(), parameter[0].toString())))
 
 	//! [ESF] Buffer Sound.createRectangleSound(unsigned int width, unsigned int freq,unsigned int size)
-	ES_FUN(lib, "createRectangleSound", 3, 3, E_Buffer::create(Sound::createRectangleSound(parameter[0].to<uint32_t>(rt), parameter[1].to<uint32_t>(rt), parameter[2].to<uint32_t>(rt))))
+	ES_FUN(lib, "createRectangleSound", 3, 3, EScript::create(Sound::createRectangleSound(parameter[0].to<uint32_t>(rt), parameter[1].to<uint32_t>(rt), parameter[2].to<uint32_t>(rt))))
 
 	//! [ESF] Buffer Sound.createNoise(unsigned int freq,unsigned int size)
-	ES_FUN(lib, "createNoise", 2, 2, E_Buffer::create(Sound::createNoise(parameter[0].to<uint32_t>(rt), parameter[1].to<uint32_t>(rt))))
+	ES_FUN(lib, "createNoise", 2, 2, EScript::create(Sound::createNoise(parameter[0].to<uint32_t>(rt), parameter[1].to<uint32_t>(rt))))
 
 	//! [ESF] Buffer Sound.createSilence(unsigned int freq,unsigned int size)
-	ES_FUN(lib, "createSilence", 2, 2, E_Buffer::create(Sound::createSilence(parameter[0].to<uint32_t>(rt), parameter[1].to<uint32_t>(rt))))
+	ES_FUN(lib, "createSilence", 2, 2, EScript::create(Sound::createSilence(parameter[0].to<uint32_t>(rt), parameter[1].to<uint32_t>(rt))))
 
 	//! [ESF] Source Sound.createSource( )
 	ES_FUN(lib, "createSource", 0, 0, E_Source::create())
@@ -43,8 +45,8 @@ void init(EScript::Namespace * globals) {
 	//! [ESF] Sound.initSoundSystem()
 	ES_FUN(lib, "initSoundSystem", 0, 0, (Sound::initSoundSystem(), EScript::create(nullptr)))
 
-	//! [ESF] Buffer Sound.loadWAV(String filename)
-	ES_FUN(lib, "loadWAV", 1, 1, E_Buffer::create(Sound::loadWAV(parameter[0].toString())))
+	//! [ESF] Buffer Sound.loadAudio(String filename)
+	ES_FUN(lib, "loadAudio", 1, 1, EScript::create(Sound::Serialization::loadAudio(Util::FileName(parameter[0].toString()))))
 
 	//! [ESF] Sound.shutDownSoundSystem()
 	ES_FUN(lib, "shutDownSoundSystem", 0, 0, (Sound::shutDownSoundSystem(), EScript::create(nullptr)))
