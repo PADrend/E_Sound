@@ -22,8 +22,8 @@ namespace E_Sound {
 class E_Listener : public EScript::ReferenceObject<Util::WeakPointer<Sound::Listener> > {
 	ES_PROVIDES_TYPE_NAME(Listener)
 	public:
-		static EScript::Type * getTypeObject();
-		static void init(EScript::Namespace & lib);
+		ESOUNDAPI static EScript::Type * getTypeObject();
+		ESOUNDAPI static void init(EScript::Namespace & lib);
 
 		E_Listener(Sound::Listener * listener, EScript::Type * type=nullptr) : ReferenceObject_t(listener,type?type:getTypeObject()) {}
 		virtual ~E_Listener() {}

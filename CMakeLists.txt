@@ -18,12 +18,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(GNUInstallDirs)
 set(CMAKE_INSTALL_CMAKECONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/E_Sound)
 
-add_library(E_Sound
+add_library(E_Sound SHARED
 	E_Buffer.cpp
 	E_Listener.cpp
 	E_Source.cpp
 	ELibSound.cpp
 )
+
+if(MSVC)
+	target_compile_definitions(E_Sound PRIVATE "ESOUNDAPI=__declspec(dllexport)")
+	target_compile_definitions(E_Sound INTERFACE "ESOUNDAPI=__declspec(dllimport)")
+else()
+	target_compile_definitions(E_Sound PRIVATE "ESOUNDAPI=")
+	target_compile_definitions(E_Sound INTERFACE "ESOUNDAPI=")
+endif()
 
 # Dependency to EScript
 if(NOT TARGET EScript)

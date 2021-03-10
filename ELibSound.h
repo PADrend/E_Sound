@@ -13,7 +13,7 @@
 #include <EScript/EScript.h>
 
 namespace E_Sound {
-void init(EScript::Namespace * globals);
+ESOUNDAPI void init(EScript::Namespace * globals);
 }
 
 #endif // ELIBSOUND_H

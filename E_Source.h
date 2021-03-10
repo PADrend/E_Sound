@@ -23,11 +23,11 @@ namespace E_Sound {
 class E_Source : public EScript::ReferenceObject<Util::Reference<Sound::Source> > {
 	ES_PROVIDES_TYPE_NAME(Source)
 	public:
-		static EScript::Type * getTypeObject();
-		static void init(EScript::Namespace & lib);
+		ESOUNDAPI static EScript::Type * getTypeObject();
+		ESOUNDAPI static void init(EScript::Namespace & lib);
 
-		static E_Source * create();
-		static E_Source * create(Sound::Source * source);
+		ESOUNDAPI static E_Source * create();
+		ESOUNDAPI static E_Source * create(Sound::Source * source);
 
 		virtual ~E_Source() {}
 
